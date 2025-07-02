@@ -29,3 +29,7 @@ Route::get('/', function () {
 
 Route::get('/pdf/generate/decomiso/{id}', [PdfController::class, 'SeizuresRecords'])->name('pdf.example');
 
+Route::get('/debug-client', function () {
+    return App\Models\Client::count();
+});
+
