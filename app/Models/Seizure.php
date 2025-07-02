@@ -50,10 +50,11 @@ class Seizure extends Model
     }
 
 
-    public function cliente()
+    public function cliente(): BelongsTo
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'cliente_id');
     }
+    
 
 
 
