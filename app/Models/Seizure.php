@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Client;
+
 class Seizure extends Model
 {
     use HasFactory;
@@ -50,8 +52,9 @@ class Seizure extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(\App\Models\Client::class);
+        return $this->belongsTo(Client::class);
     }
+
 
 
 
