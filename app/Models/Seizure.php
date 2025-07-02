@@ -52,7 +52,9 @@ class Seizure extends Model
 
     public function cliente(): BelongsTo
     {
-        return $this->belongsTo(Client::class, 'cliente_id');
+        return $this->belongsTo(\App\Models\Client::class, 'cliente_id');
+
+
     }
     
 
