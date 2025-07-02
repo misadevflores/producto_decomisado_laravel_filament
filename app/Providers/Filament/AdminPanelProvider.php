@@ -27,6 +27,8 @@ class AdminPanelProvider extends PanelProvider
         ->id('admin')
         ->path('admin')
         ->login()
+        ->authGuard('web')
+
         ->brandName('Panel de Gestión Decomiso')
         ->colors([
             'primary' => Color::Amber,
@@ -71,6 +73,6 @@ class AdminPanelProvider extends PanelProvider
             SubstituteBindings::class,
             DisableBladeIconComponents::class,
             DispatchServingFilamentEvent::class,
-        ])->canAccess(fn (User $user) => $user->hasRole(['admin', 'almacen', 'Product Manager']));
+        ]);
     }
 }

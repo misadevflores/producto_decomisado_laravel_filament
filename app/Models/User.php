@@ -8,10 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\FilamentUser as FilamentUserContract;
+
 use Filament\Panel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUserContract
+
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
@@ -45,8 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function canAccessPanel(Panel $panel): bool
+    public function canAccessPanel(\Filament\Panel $panel): bool
     {
-        return str_ends_with($this->email, 'admin@gmail.com') && $this->hasVerifiedEmail();
+        return $this->hasRole(['admin', 'almacen', 'Product Manager']);
     }
+
 }
