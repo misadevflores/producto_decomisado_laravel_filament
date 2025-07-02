@@ -13,7 +13,15 @@ return [
     | This will allow your users to receive real-time notifications.
     |
     */
-
+    'auth' => [
+        'guard' => 'web',
+        'pages' => [
+            'login' => \Filament\Http\Livewire\Auth\Login::class,
+        ],
+        'authorize' => function () {
+            return auth()->check();  // Permite acceso si el usuario está logueado
+        },
+    ],
     'broadcasting' => [
 
         // 'echo' => [
