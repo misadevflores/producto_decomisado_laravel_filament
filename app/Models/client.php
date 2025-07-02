@@ -13,7 +13,8 @@ class Client extends Model
 
     public function seizures()
     {
-        return $this->hasMany(Seizure::class);
+        return $this->hasMany(Seizure::class, 'cliente_id');
     }
+
 
 }

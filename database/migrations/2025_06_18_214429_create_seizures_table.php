@@ -36,8 +36,7 @@ return new class extends Migration
               $table->string('status_producto')->nullable();
               $table->enum('status_producto', ['Regular ', 'Bueno', 'Malo'])->default('Regular');
             $table->enum('status', ['Disponible ', 'Reventa', 'Baja', 'Respuesto', 'Activo Fijo '])->default('Disponible');
-            $table->string('suggested_price', 10, 2)->nullable();
-            $table->string('recibido_por');
+            $table->decimal('suggested_price', 10, 2)->nullable();
             $table->text('obs_almacen')->nullable();
             $table->string('attachment')->nullable();
 
