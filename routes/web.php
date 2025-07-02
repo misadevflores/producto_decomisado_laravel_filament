@@ -28,3 +28,4 @@ Route::get('/', function () {
 // })->name('pdf.example');
 
 Route::get('/pdf/generate/decomiso/{id}', [PdfController::class, 'SeizuresRecords'])->name('pdf.example');
+

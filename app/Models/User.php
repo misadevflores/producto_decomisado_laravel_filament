@@ -49,7 +49,7 @@ class User extends Authenticatable implements FilamentUserContract
 
     public function canAccessPanel(\Filament\Panel $panel): bool
     {
-        return $this->hasRole(['admin', 'almacen', 'Product Manager']);
+        return $this->hasRole(['super_admin', 'almacen', 'Product Manager','credito']);
     }
 
 }
