@@ -79,14 +79,15 @@ class SeizureResource extends Resource
                     ]),
 
                     Select::make('cliente_id')
-                    ->relationship('cliente', 'nombre')
+                    ->relationship('cliente', 'nombre') // nombre del método de relación en el modelo, no de la tabla
                     ->searchable()
                     ->preload()
                     ->required()
-                    ->createOptionForm(schema: [
-                        TextInput::make('nombre')->required()->label('Nombre del cliente ')
+                    ->createOptionForm([
+                        TextInput::make('nombre')
+                            ->label('Nombre del cliente')
+                            ->required(),
                     ]),
-                
                     Select::make('sucursal')->label('Sucursal')->required()
                     ->options([
                         'Cañoto' => 'Cañoto',
@@ -140,7 +141,7 @@ class SeizureResource extends Resource
                 TextInput::make('monto_facturado')->label('Monto Factura Inicial')->required()->numeric()->beforeStateDehydrated(fn ($state) => 
                 (float) str_replace(['.', ','], ['', '.'], $state)),
 
-                DatePicker::make('fecha_entrega')->required(),
+                DatePicker::make('fecha_entrega'),
                 TextInput::make('monto_cancelado')->label('Monto cancelado')->numeric() ->beforeStateDehydrated(fn ($state) => 
                 (float) str_replace(['.', ','], ['', '.'], $state)
                  ),
@@ -198,6 +199,7 @@ class SeizureResource extends Resource
         return $table
             ->columns([
                 //
+                Tables\Columns\TextColumn::make('id')->searchable(),
                 Tables\Columns\TextColumn::make('product.nombre')->searchable(),
                 Tables\Columns\TextColumn::make('cliente.nombre'),
                 Tables\Columns\TextColumn::make('factura')->label('Nro Factura'),
@@ -210,7 +212,7 @@ class SeizureResource extends Resource
                     'Reventa' => 'success',
                     'Baja' => 'danger',
                     'Respuesto' => 'gray',
-                    'Activo Fijo' => 'secondary',
+                    'Activo Fijo' => 'info',
                     default => 'secondary',
                 })
                 ->searchable(),
