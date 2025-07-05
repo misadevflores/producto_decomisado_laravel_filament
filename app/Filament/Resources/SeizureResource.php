@@ -109,6 +109,7 @@ class SeizureResource extends Resource
                         'Bueno' => 'Bueno',
                         'Regular' => 'Regular',
                         'Malo' => 'Malo',
+                        'Excelente' => 'Execelente'
                     ]),
 
                     Select::make('status')->label('Estado de registro')->required()
@@ -124,8 +125,8 @@ class SeizureResource extends Resource
                     DatePicker::make('fecha_decomiso')->required(),
                     Textarea::make('obs_product')->label('Obs...')->columnSpan(2),
                     ])
-                ->disabled(fn () => auth()->user()->hasRole(['Product Manager', 'almacen']))
-                ->dehydrated(fn () => !auth()->user()->hasRole(['Product Manager', 'almacen'])),
+                ->disabled(fn () => auth()->user()->hasRole(['Product Manager', 'Almacen','Gerencia']))
+                ->dehydrated(fn () => !auth()->user()->hasRole(['Product Manager', 'Almacen','Gerencia'])),
                 
                 //  form group pára los datos de la faturas u otros
                 Fieldset::make('')->label('Dados de facturas')
@@ -150,8 +151,8 @@ class SeizureResource extends Resource
                  TextInput::make('area')
                  ->label('Área'),
                 ])
-                ->disabled(fn () => auth()->user()->hasRole(['Product Manager', 'almacen']))
-                ->dehydrated(fn () => !auth()->user()->hasRole(['Product Manager', 'almacen']))
+                ->disabled(fn () => auth()->user()->hasRole(['Product Manager', 'Almacen','Gerencia']))
+                ->dehydrated(fn () => !auth()->user()->hasRole(['Product Manager', 'Almacen','Gerencia']))
                 ->columns(4),
                
 
@@ -169,27 +170,38 @@ class SeizureResource extends Resource
                     Textarea::make('observation_pm')->label('Obs. Product Manager')->columnSpan(2)
                   
                 ])
-                ->disabled(fn () => auth()->user()->hasRole(['credito','almacen']))
-                ->dehydrated(fn () => !auth()->user()->hasRole(['credito','almacen'])),
+                ->disabled(fn () => auth()->user()->hasRole(['Credito','Almacen','Gerencia']))
+                ->dehydrated(fn () => !auth()->user()->hasRole(['Credito','Almacen','Gerencia'])),
                 // ->columns(4),
 
 
                  //  group form para los de amalcen 
-                 Fieldset::make('')->label('Dados de registro los de almacen')
+                 Fieldset::make('')->label('Dados de registro los de Almacen')
                  ->schema([
-                    Textarea::make('obs_almacen')->label('Obs. almacen')->columnSpan(2)
+                    Textarea::make('obs_Almacen')->label('Obs. Almacen')->columnSpan(2)
                 ]) 
-                 ->disabled(fn () => auth()->user()->hasRole(['Product Manager','credito']))
-                ->dehydrated(fn () => !auth()->user()->hasRole(['Product Manager','credito'])),
+                 ->disabled(fn () => auth()->user()->hasRole(['Product Manager','Credito','Gerencia']))
+                ->dehydrated(fn () => !auth()->user()->hasRole(['Product Manager','Credito','Gerencia'])),
                 
+
+                Fieldset::make('Gerencia')->label('Precio Sugerido por Gerencia')
+                ->schema([
+                    TextInput::make('suggested_price_gerencia')->label('Precio de costo')->default(0),
+                ]) ->disabled(fn () => auth()->user()->hasRole(['Product Manager','Almacen','Credito']))
+                ->dehydrated(fn () => !auth()->user()->hasRole(['Product Manager','Almacen','Credito'])),
+
                 Fieldset::make('')->label('Solo si es para activo fijo')
                 ->schema([
-                    FileUpload::make('attachment')
+                    FileUpload::make('attachment')->label('Adjunto')
                     ->disk('public')
                     ->directory('form-attachments')
                     ->visibility('public')
-                ])  ->disabled(fn () => auth()->user()->hasRole(['credito','almacen','Product Manager']))
-                ->dehydrated(fn () => !auth()->user()->hasRole(['credito','almacen','Product Manager'])),
+                    ->reorderable()
+                    ->appendFiles()
+                ])  ->disabled(fn () => auth()->user()->hasRole(['Credito','Almacen','Product Manager','Gerencia']))
+                ->dehydrated(fn () => !auth()->user()->hasRole(['Credito','Almacen','Product Manager','Gerencia'])),
+
+
                 
             ]);
     }

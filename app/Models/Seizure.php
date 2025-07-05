@@ -35,7 +35,8 @@ class Seizure extends Model
         'status_producto',
         'suggested_price',
         'obs_almacen',
-        'attachment'
+        'attachment',
+        'suggested_price_gerencia'
     ];
 
     public function product()

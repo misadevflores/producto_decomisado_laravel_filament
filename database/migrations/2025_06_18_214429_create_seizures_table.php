@@ -39,7 +39,7 @@ return new class extends Migration
             $table->decimal('suggested_price', 10, 2)->nullable();
             $table->text('obs_almacen')->nullable();
             $table->string('attachment')->nullable();
-
+            $table->decimal('suggested_price_gerencia', 10, 2)->nullable();
             $table->timestamps();
         });
     }
