@@ -184,7 +184,7 @@ class SeizureResource extends Resource
                 ->dehydrated(fn () => !auth()->user()->hasRole(['Product Manager','Credito','Gerencia'])),
                 
 
-                Fieldset::make('Gerencia')->label('Precio Sugerido por Gerencia')
+                Fieldset::make('Gerencia')->label('Precio Autorizado para la venta')
                 ->schema([
                     TextInput::make('suggested_price_gerencia')->label('Precio de costo')->default(0),
                 ]) ->disabled(fn () => auth()->user()->hasRole(['Product Manager','Almacen','Credito']))
