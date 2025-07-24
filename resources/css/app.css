@@ -1,0 +1,11 @@
+/* resources/css/app.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* ... otros estilos de tu app.css */
+/* resources/css/app.css */
+@import 'filament-custom.css';
+/* Asegúrate de que esta línea esté después de cualquier @import de fuentes */
+
+/* ... el resto de tu CSS */
+body{
+    font-family: monospace;
+}

@@ -12,7 +12,8 @@ class ViewSeizure extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
+            // Actions\ViewAction::make(),
+             Actions\EditAction::make(),
         ];
     }
 }

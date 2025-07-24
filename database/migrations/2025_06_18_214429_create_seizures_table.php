@@ -34,8 +34,8 @@ return new class extends Migration
               $table->date('fecha_entrega');
               $table->string('area')->nullable();
               $table->string('status_producto')->nullable();
-              $table->enum('status_producto', ['Regular ', 'Bueno', 'Malo'])->default('Regular');
-            $table->enum('status', ['Disponible ', 'Reventa', 'Baja', 'Respuesto', 'Activo Fijo '])->default('Disponible');
+              $table->enum('status_producto', ['REGULAR', 'BUENO', 'MALO','EXCELENTE'])->default('REGULAR');
+            $table->enum('status', ['DISPONIBLE', 'REVENTA', 'BAJA', 'REPUESTO', 'ACTIVO FIJO'])->default('DISPONIBLE');
             $table->decimal('suggested_price', 10, 2)->nullable();
             $table->text('obs_almacen')->nullable();
             $table->string('attachment')->nullable();

@@ -18,6 +18,8 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+
+use Filament\Support\Enums\MaxWidth;
 use App\Models\User;
 class AdminPanelProvider extends PanelProvider
 {
@@ -31,8 +33,14 @@ class AdminPanelProvider extends PanelProvider
 
         ->brandName('Panel de Gestión Decomiso')
         ->colors([
-            'primary' => Color::Amber,
+            'primary' => Color::Red, // Puedes cambiar 'Amber' por cualquier otro Color::XYZ
+                // También puedes definir otros roles de color si lo deseas
+                // 'danger' => Color::Red,
+                // 'warning' => Color::Orange,
+                // 'success' => Color::Green,
+                // 'info' => Color::Blue,
         ])
+      
         // Descubre todos los resources desde esta carpeta/namespace
         ->discoverResources(
             in: app_path('Filament/Resources'),
@@ -51,11 +59,11 @@ class AdminPanelProvider extends PanelProvider
         ->discoverWidgets(
             in: app_path('Filament/Widgets'),
             for: 'App\\Filament\\Widgets'
-        )
+        ) 
         // Y agrega manualmente algunos
         ->widgets([
             Widgets\AccountWidget::class,
-            Widgets\FilamentInfoWidget::class,
+            // Widgets\FilamentInfoWidget::class,
         ])
         ->plugins([
             \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
@@ -63,6 +71,8 @@ class AdminPanelProvider extends PanelProvider
         ->authMiddleware([
             Authenticate::class,
         ])
+        ->maxContentWidth(MaxWidth::Full)
+        ->sidebarCollapsibleOnDesktop() // <-- activar el sidebar en desktop
         ->middleware([
             EncryptCookies::class,
             AddQueuedCookiesToResponse::class,

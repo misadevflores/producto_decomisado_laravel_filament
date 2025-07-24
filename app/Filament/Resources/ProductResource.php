@@ -19,8 +19,8 @@ class ProductResource extends Resource
 {
     protected static ?string $model = \App\Models\Product::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
    
+    protected static ?string $navigationIcon = 'heroicon-o-cube'; // Un icono de cubo
 
     public static function form(Form $form): Form
     {
@@ -30,13 +30,13 @@ class ProductResource extends Resource
                 TextInput::make('nombre')->required(),
               
                     TextInput::make('costo'),
-                    TextInput::make('sku')->required(),
+                    TextInput::make('sku'),
                     TextInput::make('modelo'),
               
                 TextInput::make('descripcion'),
               
                     TextInput::make('precio_venta'),
-                    TextInput::make('stock')->numeric()->required(),
+                    TextInput::make('stock')->numeric()->required()->default(1),
              
             ]);
     }

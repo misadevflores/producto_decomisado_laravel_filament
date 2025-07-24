@@ -22,6 +22,9 @@ return [
             return auth()->check();  // Permite acceso si el usuario está logueado
         },
     ],
+
+    'max_content_width' => 'full', // Cambia de '2xl' o lo que sea a 'full'
+
     'broadcasting' => [
 
         // 'echo' => [

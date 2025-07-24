@@ -1,0 +1,56 @@
+/* resources/css/filament-custom.css */
+
+:root {
+    --font-sans: 'Roboto', sans-serif;
+    /* Reemplaza 'Roboto' con tu fuente */
+    --font-mono: 'monospace', monospace;
+    /* O tu fuente mono preferida */
+}
+
+/* Puedes añadir selectores más específicos si ves que no se aplica a todo */
+.fi-app,
+.fi-modal,
+.fi-sidebar,
+.fi-topbar,
+.fi-form,
+.fi-table,
+.fi-button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.text-lg,
+.text-xl,
+.text-2xl,
+.fi-section-header-title {
+    font-family: var(--font-sans) !important;
+    /* Usar !important para asegurar la sobrescritura */
+}
+
+/* Reglas para hacer la tabla 100% de ancho */
+.fi-ta-content {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.fi-ta-table-container {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.fi-ta-table {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* También considera estos contenedores si no se estira todo el contenido */
+.fi-page-content {
+    max-width: none !important;
+}
+
+.fi-main>.fi-section,
+.fi-main>.fi-page-content {
+    max-width: none !important;
+}
